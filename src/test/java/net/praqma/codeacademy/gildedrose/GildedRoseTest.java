@@ -13,6 +13,7 @@ public class GildedRoseTest {
         app.updateQuality();
         assertEquals("foo", app.items[0].name);
     }
+
     @Test
     public void old_brie() {
         Item[] items = new Item[] { new Item("Aged Brie", 0, 1) };
@@ -21,6 +22,7 @@ public class GildedRoseTest {
         assertTrue("brie is a higher quality",app.items[0].quality>1 );
         
     }
+
     @Test
     public void never_over_50() {
         Item[] items = new Item[] { new Item("Aged Brie", 0, 50) };
@@ -29,4 +31,13 @@ public class GildedRoseTest {
         assertTrue("brie is higher quality than it should be able to",app.items[0].quality==50 );
         
     }
+
+    @Test
+    public void double_after_sellByDate() {
+        Item[] items = new Item[] { new Item("PastDate", -1, 45)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertTrue("Item does not degrade twice as fast after passing sell by date", app.items[0].quality==43);
+    }
+    
 }
