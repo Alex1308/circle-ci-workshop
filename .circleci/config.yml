@@ -35,8 +35,9 @@ jobs:
 
 workflows:
   version: 2
-  two_job_flow:
+  three_job_flow:
     jobs:
+      - checkout
       - test:
           requires:
             - checkout
