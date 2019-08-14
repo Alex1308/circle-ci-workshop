@@ -14,5 +14,5 @@ jobs:
           name: MakeJar
           command: gradle jar
       - store_artifacts:
-          path: /build/libs/code/artifact
+          path: build/libs
           destination: prefix
