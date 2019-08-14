@@ -55,4 +55,26 @@ public class GildedRoseTest {
         app.updateQuality();
         assertTrue("Sulfuras has changed, when not supposed to.", (items[0].quality == 45 && items[0].sellIn == 6));
     }
+
+    @Test
+    public void backstage_pass_increase() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 15, 40), 
+        new Item("Backstage passes to a TAFKAL80ETC concert", 10, 40), 
+        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 40),
+        new Item("Backstage passes to a TAFKAL80ETC concert", -1, 40)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertTrue("Backstage pass 1 is gaining quality incorrectly. Quality is: " + items[0].quality, items[0].quality == 41);
+        assertTrue("Backstage pass 2 is gaining quality incorrectly. Quality is: " + items[1].quality, items[1].quality == 42);
+        assertTrue("Backstage pass 3 is gaining quality incorrectly. Quality is: " + items[2].quality, items[2].quality == 43);
+        assertTrue("Backstage pass 4 quality is not null. Quality is: " + items[3].quality, items[3].quality == 0);
+    }
+
+    @Test
+    public void conjured_items_degrade_twice() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 5, 40)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertTrue("Conjured item is not losing quality twice as fast", items[0].quality == 38);
+    }
 }
