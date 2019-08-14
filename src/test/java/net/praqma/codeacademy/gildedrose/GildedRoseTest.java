@@ -33,6 +33,14 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void never_negative() {
+        Item[] items = new Item[] { new Item("TestUnder0", 1, 0)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertTrue("Item below 0", app.items[0].quality >= 0);
+    }
+
+    @Test
     public void double_after_sellByDate() {
         Item[] items = new Item[] { new Item("PastDate", -1, 45)};
         GildedRose app = new GildedRose(items);
@@ -40,4 +48,11 @@ public class GildedRoseTest {
         assertTrue("Item does not degrade twice as fast after passing sell by date", app.items[0].quality==43);
     }
     
+    @Test 
+    public void sulfuras_never_change() {
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 6, 45)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertTrue("Sulfuras has changed, when not supposed to.", (items[0].quality == 45 && items[0].sellIn == 5));
+    }
 }
