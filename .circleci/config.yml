@@ -33,9 +33,6 @@ jobs:
             - .
   dockerize:
     machine: true
-    environment:
-      $DOCKER_USER: alex1308
-      $DOCKER_PASS: viborg0943
     steps:
       - attach_workspace:
           at: .
