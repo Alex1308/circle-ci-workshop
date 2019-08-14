@@ -53,6 +53,6 @@ public class GildedRoseTest {
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 6, 45)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertTrue("Sulfuras has changed, when not supposed to.", (items[0].quality == 45 && items[0].sellIn == 5));
+        assertTrue("Sulfuras has changed, when not supposed to.", (items[0].quality == 45 && items[0].sellIn == 6));
     }
 }
