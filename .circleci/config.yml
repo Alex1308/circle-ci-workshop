@@ -6,13 +6,13 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/workspace
+          at: tmp/workspace
   test:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: tmp/workspace
       - run:
           name: Test
           command: gradle test
@@ -23,9 +23,8 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
-      
       - attach_workspace:
-          at: /tmp/workspace
+          at: tmp/workspace
       - run:
           name: MakeJar
           command: gradle jar
